@@ -1,0 +1,14 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "UV-Project for the Packaging Valley Makeathon 2025"
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.10.7",
+    "pandas>=2.3.3",
+    "plotly>=6.3.1",
+    "psycopg2-binary>=2.9.11",
+    "tensorflow>=2.20.0",
+    "torch>=2.8.0",
+    "tornado>=6.5.2",
+]
