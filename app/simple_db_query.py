@@ -10,7 +10,7 @@ import csv
 matplotlib.use('WebAgg')
 
 PG_CONFIG = {
-    "host":"10.164.0.4",
+    "host":"34.13.178.206",
     "password":"DigiRomMake",
     "user": "readonly",
     "dbname": "makeathon"
@@ -37,9 +37,12 @@ def main():
     conn = psycopg2.connect(**PG_CONFIG)
     local_tz = timezone(timedelta(hours=2))
 
-    dataset=torque_over_time(conn, 12, "torque1", (datetime(2025,7,2,9,40,30,tzinfo=local_tz)+timedelta(minutes=10), datetime(2025,7,2,14,29,0,tzinfo=local_tz)-timedelta(minutes=10)))
-    #dataset=torque_over_time(conn, 12, "torque1", (datetime(2025,7,3,11,22,0,tzinfo=local_tz)+timedelta(minutes=10), datetime(2025,7,3,14,37,55,tzinfo=local_tz)-timedelta(minutes=10)))
-    #dataset=torque_over_time(conn, 12, "torque1", (datetime(2025,7,9,14,54,54, tzinfo=local_tz)+timedelta(minutes=1), datetime(2025,7,9,15,24,40,tzinfo=local_tz)-timedelta(minutes=1)))
+    # longest run according to emil
+    dataset=torque_over_time(conn, 1, "torque1", (datetime(2025,6,10,7,29,26,tzinfo=local_tz)+timedelta(minutes=10), datetime(2025,6,13,6,9,34,tzinfo=local_tz)-timedelta(minutes=10)))
+    
+    
+    # dataset=torque_over_time(conn, 12, "torque1", (datetime(2025,7,3,11,22,0,tzinfo=local_tz)+timedelta(minutes=10), datetime(2025,7,3,14,37,55,tzinfo=local_tz)-timedelta(minutes=10)))
+    # dataset=torque_over_time(conn, 12, "torque1", (datetime(2025,7,9,14,54,54, tzinfo=local_tz)+timedelta(minutes=1), datetime(2025,7,9,15,24,40,tzinfo=local_tz)-timedelta(minutes=1)))
 
     timestamps, _, _, values = zip(*dataset)
     plt.plot(timestamps, [value if value else np.nan for value in values])
