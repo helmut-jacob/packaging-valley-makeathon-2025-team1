@@ -10,7 +10,7 @@ import csv
 matplotlib.use('WebAgg')
 
 PG_CONFIG = {
-    "host":"10.164.0.4",
+    "host":"34.13.178.206",
     "password":"DigiRomMake",
     "user": "readonly",
     "dbname": "makeathon"
