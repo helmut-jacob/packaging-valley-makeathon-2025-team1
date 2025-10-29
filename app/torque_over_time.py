@@ -28,7 +28,7 @@ order by ts asc;
 
 SQL_STRING_WITH_GAPFILL="""
 select
-time_bucket_gapfill('100 ms', ts) as tsbucket,
+time_bucket_gapfill('500 ms', ts) as tsbucket,
 machine_number,
 tag,
 locf(max(value_dec)) as value
@@ -92,7 +92,7 @@ def write_csv(machine_number, start, end, size, dataset):
 
 def generate_torque_data_for_time_windows(conn, machine_number):
     # walk all active windows of a machine and generate csv files for all windows
-    windows = get_active_windows_for_machine(conn, 1) 
+    windows = get_active_windows_for_machine(conn, machine_number) 
     for index, window in enumerate(windows):
         print(f"Processing active window {index} of {len(windows)} for machine {machine_number}")
         dataset = torque_over_time(conn, machine_number, "torque1", (window[0], window[1]))
